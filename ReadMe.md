@@ -11,6 +11,6 @@ Date: 2019 10 7 <br>
 Restore Words by dic.
 
 ### Segmente Words
-Date: 2018 10 8 <br>
+Date: 2019 10 8 <br>
 Segmente Words by FMM and RMM.
 

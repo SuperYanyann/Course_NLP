@@ -1,9 +1,9 @@
 # Copyright (c) 2019 Yan Wang.All rights reserved.
-# date : 2019/10/14
+# date : 2019/10/14 ~ 2019/10/16
 # auther : Yan Wang<dieqi317@gmail.com>
 # file : chart_syntax_parser.py
 '''
-e.g. : (1) the (2) cat (3) caught (4) a (5) mouse (6)
+e.g. : (0) the (1) cat (2) caught (3) a (4) mouse (5)
 '''
 import queue
 
@@ -108,15 +108,18 @@ def get_rela_agenda2rules(agenda_item , rule):
         return 0
 
 # get relationship between active_edge and the chart's part
-def get_rela_edge2chart(active_edge , chart):
+def get_rela_edge2chart(active_edge , chart , run_point):
     judge_part = chart.part
     active_edge_break_index = active_edge.break_point
     judge_edge_part =  active_edge.rule.equalsign_right[active_edge_break_index]
     judge_len = active_edge.rule.right_len
-    if (judge_edge_part == judge_part and active_edge_break_index + 1 < judge_len):
-        return 1
-    elif (judge_edge_part == judge_part and active_edge_break_index + 1  == judge_len):
-        return 2
+    if (active_edge.end_point == chart.begin_point):
+        if (judge_edge_part == judge_part and active_edge_break_index + 1 < judge_len):
+            return 1
+        elif (judge_edge_part == judge_part and active_edge_break_index + 1  == judge_len):
+            return 2
+        else :
+            return 0
     else:
         return 0
 
@@ -140,7 +143,7 @@ def main():
     rules = get_rules(rule_file_dir)
 
     # begin chart parser
-    while (run_point < sen_len or (~agenda.empty())) :
+    while (run_point < sen_len or bool(1 - agenda.empty())) :
         # step 1
         if agenda.empty() :
             temp_part = dic[test_sentence[run_point]]
@@ -153,13 +156,14 @@ def main():
         # step 3
         for temp_rule in rules:
             flag_agenda2rules = get_rela_agenda2rules(opera_agenda , temp_rule)
-            print ('flag_agenda2rules : ' + str(flag_agenda2rules))
+            # print ('flag_agenda2rules : ' + str(flag_agenda2rules))
             if  1 == flag_agenda2rules :
-                new_active_edge = active_edge(temp_rule , 1 , opera_agenda.begin_point , run_point + 1)
+                new_active_edge = active_edge(temp_rule , 1 , opera_agenda.begin_point , opera_agenda.end_point)
                 active_edge_list.append(new_active_edge)
             elif 2 == flag_agenda2rules :
-                new_agenda = agenda_item(temp_rule.equalsign_left , opera_agenda.begin_point , run_point + 1)
+                new_agenda = agenda_item(temp_rule.equalsign_left , opera_agenda.begin_point , opera_agenda.end_point)
                 agenda.put(new_agenda)
+                print ('add agenda local 1 : ' +  new_agenda.part + ' ' + str(new_agenda.begin_point) + ' -> ' + str(new_agenda.end_point))
 
         # step 4
         new_chart = chart(opera_agenda.part , opera_agenda.begin_point , opera_agenda.end_point)
@@ -167,8 +171,8 @@ def main():
 
         # step 5
         for temp_active_edge in active_edge_list:
-            flag_edge2chart = get_rela_edge2chart(temp_active_edge, new_chart)
-            print ('flag_edge2chart : ' + str(flag_edge2chart))
+            flag_edge2chart = get_rela_edge2chart(temp_active_edge, new_chart ,run_point)
+            # print ('flag_edge2chart : ' + str(flag_edge2chart))
             if 1 == flag_edge2chart :
                 temp_active_edge.break_point = temp_active_edge.end_point + 1
                 temp_active_edge.end_point = new_chart.end_point
@@ -177,14 +181,13 @@ def main():
                 new_agenda = agenda_item(useful_part,temp_active_edge.begin_point,new_chart.end_point)
                 # active_edge_list.remove(temp_active_edge)
                 agenda.put(new_agenda)
+                print ('add agenda local 2 : ' +  new_agenda.part + ' ' + str(new_agenda.begin_point) + ' -> ' + str(new_agenda.end_point))
                 # test
                 '''
                 print ('add new agenda : ')
                 print (new_agenda.part + ' : ', end='')
                 print (str(new_agenda.begin_point) + ' -> ' + str(new_agenda.end_point))
                 '''
-
-        run_point = new_chart.end_point
 
         # test
         print(run_point)
@@ -199,6 +202,11 @@ def main():
             print ('|' , end = '')
             print (str(item.begin_point) + ' -> ' + str(item.end_point) + ' | ' + str(item.break_point))
         print('==========================================================')
+        # end
+
+        run_point = new_chart.end_point
+
+    print ("finish ! ")
 
 
 if __name__ == '__main__':

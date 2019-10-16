@@ -3,8 +3,15 @@
 # auther : Yan Wang<dieqi317@gmail.com>
 # file : word_segmentation.py
 
+############################################################################################
+# txt file dir
+############################################################################################
 dic_file_dir = './data/dic_ec.txt'
 
+
+############################################################################################
+# some utils
+############################################################################################
 # get the dic from dic_file
 # the dic  contains all the Chinese words in the .txt file.
 def get_chinese_dict(path):
@@ -28,6 +35,10 @@ def get_str(word_list):
         word_str += (inst + '  ')
     return word_str
 
+
+############################################################################################
+# FMM and RMM
+############################################################################################
 # use Forward Maximum Matching to realize chinese word segmentation
 def FMM(sentence , dic , max_chars = 6):
     len_sent = len(sentence)
@@ -89,6 +100,10 @@ def result_print(sentence , FMM_result , RMM_result):
     print ('the FMM result is : ' + get_str(FMM_result))
     print ('the RMM result is : ' + get_str(RMM_result))
 
+
+############################################################################################
+# main()
+############################################################################################
 def main():
     test_sentence = '乒乓球拍卖完了。'
     test_sentence_2 = '今天是个好日子。'

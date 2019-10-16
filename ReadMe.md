@@ -15,6 +15,5 @@ Date: 2019/10/8 <br>
 Segmente Words by FMM and RMM.
 
 ### Chart Syntax Parser
-Date: 2019/10/15 ~ <br>
+Date: 2019/10/15 ~ 2019/10/16 <br>
 Syntax parser by chart-syntax.
-

@@ -1,6 +1,6 @@
 # Automatic Text Scoring
-date : 2019/11/10
-auther : Yan Wang
+date : 2019/11/10<br>
+auther : Yan Wang<br>
 key words : Automatic Text Scoring / Automated Essay Scoring
 
 # Paper List

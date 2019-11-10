@@ -9,6 +9,8 @@ key words : Automatic Text Scoring / Automated Essay Scoring
 - [Automated Essay Scoring: A Survey of the State of the Art, ICJAI 2019](https://www.ijcai.org/proceedings/2019/879)
 
 ## traditional ML method
+### 2014
+- [Identifying Argumentative Discourse Structures in Persuasive Essays, EMNLP 2014](https://www.aclweb.org/anthology/D14-1006/)
 ### 2015
 - [Task-Independent Features for Automated Essay Grading, 2015 ](https://www.researchgate.net/publication/278383803_Task-Independent_Features_for_Automated_Essay_Grading)
 
@@ -34,10 +36,12 @@ key words : Automatic Text Scoring / Automated Essay Scoring
 - [mathgeeker's blog ](https://www.mathgeeker.com/2018/05/04/auto-scoring-0/)
 - [jinchengneng's blog ](https://jinchengneng.github.io/2018/02/10/TAIL%20CAMP%20NLP%20Task2/)
 - [DDigimon's blog](https://my.oschina.net/DDigimon/blog/1622301)
+- [ZhouMing's blog](https://zhoum1118.github.io/deeplearning/2017/10/16/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-%E5%9C%A8%E5%AD%A6%E7%94%9F%E4%BD%9C%E6%96%87%E4%B8%AD%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%AF%87%E7%AB%A0%E7%BB%93%E6%9E%84.html)
 
 ## Useful Code
 - [Neural Essay Assessor](https://github.com/nusnlp/nea)
 - [DDigimon's github](https://github.com/DDigimon/TCAMP-WEEK2)
+- [ZhouM1118's github](https://github.com/ZhouM1118/NLPForDiscourseStructures)
 
 ## Competition
 - [The Hewlett Foundation: Automated Essay Scoring, Kaggle 2012](https://www.kaggle.com/c/asap-aes/overview)
